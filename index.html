@@ -59,7 +59,6 @@
         }
         #intro-overlay.hidden { opacity: 0; visibility: hidden; }
 
-        /* ✅ ПРИБРАНО СИНИЙ КОЛІР - ТЕПЕР БІЛИЙ/СІРИЙ */
         .btn { 
             padding: 12px 35px; 
             border-radius: 4px; 
@@ -87,7 +86,6 @@
         .tilt-container { z-index: 100; display: none; perspective: 1500px; }
         .tilt-container.show { display: block; }
 
-        /* ✅ ПРИБРАНО СИНЮ ОБВОДКУ КАРТКИ */
         .card-container { 
             width: 340px; 
             height: 480px; 
@@ -107,10 +105,46 @@
         .art { position: absolute; width: 100%; height: 100%; object-fit: cover; z-index: 50; opacity: 0; transition: 1s; }
         .art.visible { opacity: 1; }
 
-        #rarity-label { position: absolute; top: 40px; width: 100%; text-align: center; z-index: 60; font-weight: 900; font-size: 28px; text-transform: uppercase; letter-spacing: 8px; color: #fff; opacity: 0; transition: 1s; text-shadow: 0 0 15px rgba(0,0,0,0.5); }
+        /* ✅ ДОДАНО ТІНЬ-ОБВОДКУ ДЛЯ ЧИТАБЕЛЬНОСТІ НА БІЛОМУ */
+        #rarity-label { 
+            position: absolute; 
+            top: 40px; 
+            width: 100%; 
+            text-align: center; 
+            z-index: 60; 
+            font-weight: 900; 
+            font-size: 28px; 
+            text-transform: uppercase; 
+            letter-spacing: 8px; 
+            color: #fff; 
+            opacity: 0; 
+            transition: 1s; 
+            text-shadow: 
+                -1px -1px 0 #000,  
+                 1px -1px 0 #000,
+                -1px  1px 0 #000,
+                 1px  1px 0 #000,
+                 0px 0px 10px rgba(0,0,0,0.8); 
+        }
         #rarity-label.visible { opacity: 1; }
 
-        #owner-name { position:absolute; bottom:25px; width:100%; text-align:center; color:rgba(255,255,255,0.5); font-size:11px; z-index:60; letter-spacing:3px; text-transform: uppercase; }
+        /* ✅ ТАК САМО ДЛЯ ІМЕНІ ВЛАСНИКА */
+        #owner-name { 
+            position:absolute; 
+            bottom:25px; 
+            width:100%; 
+            text-align:center; 
+            color:#fff; 
+            font-size:11px; 
+            z-index:60; 
+            letter-spacing:3px; 
+            text-transform: uppercase;
+            text-shadow: 
+                -1px -1px 0 #000,  
+                 1px -1px 0 #000,
+                -1px  1px 0 #000,
+                 1px  1px 0 #000;
+        }
 
         .controls { margin-top: 30px; z-index: 1000; display: none; }
         .controls.visible { display: block; }
@@ -129,7 +163,6 @@
 
     <div id="intro-overlay">
         <div style="text-align: center;">
-            <!-- ✅ ПРИБРАНО СИНЮ ОБВОДКУ В ІНПУТІ -->
             <input type="text" id="name-input" placeholder="ENTER USERNAME" style="padding:15px; background:rgba(255,255,255,0.05); border:1px solid #555; color:#fff; border-radius:4px; margin-bottom:25px; text-align:center; outline:none; width: 250px; font-family: inherit;"><br>
             <button class="btn" id="start-btn">START</button>
             <p id="error-msg" style="color: #ff4444; font-size: 11px; margin-top: 15px; display: none; letter-spacing: 1px;">DATABASE: ACCESS DENIED - CHANCE USED</p>
@@ -206,7 +239,7 @@
             
             const usedNames = JSON.parse(localStorage.getItem('bulk_v4_system') || "[]");
             usedNames.push(currentUser);
-            localStorage.setItem('bulk_names_v3', JSON.stringify(usedNames));
+            localStorage.setItem('bulk_v4_system', JSON.stringify(usedNames));
 
             document.documentElement.style.setProperty('--current-color', nextColor);
             document.getElementById('rarity-label').innerText = nextName;
